@@ -21,6 +21,7 @@ app.use(express.json());
 const apiKey = process.env.API_KEY;
 
 async function runChat(userInput) {
+const startTime = Date.now();
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-pro",
@@ -603,6 +604,10 @@ const safetySettings = [
 
   const result = await chatSession.sendMessage(userInput);
   const response = result.response;
+  const endTime = Date.now();
+  
+const responseTime = endTime - startTime;
+console.log(`Response time: ${responseTime} ms`);
   return response.text();
 }
 
