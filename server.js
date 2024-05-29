@@ -13,10 +13,12 @@ const {
   HarmBlockThreshold,
 } = require("@google/generative-ai");
 
+const dotenv = require('dotenv').config()
+
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
-const apiKey = "AIzaSyC0xGFdaEg-cljqnNJWsEXdKyR4jAWhw_s";
+const apiKey = process.env.API_KEY;
 
 async function runChat(userInput) {
 const genAI = new GoogleGenerativeAI(apiKey);
